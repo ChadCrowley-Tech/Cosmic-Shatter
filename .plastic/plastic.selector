@@ -1,0 +1,4 @@
+repository "Game1_Asteroids_Practice 2026-04-30_22-39-33/Game1_Asteroids_Practice@2475255044124@cloud"
+  path "/"
+    br "/main"
+    co "/main"
