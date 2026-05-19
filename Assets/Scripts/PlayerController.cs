@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems; // Added to prevent screen taps from double firing
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,6 +32,12 @@ public class PlayerController : MonoBehaviour
     // Controls the player graphic
     private SpriteRenderer spriteRenderer;
 
+    private MobileButton btnLeft;
+    private MobileButton btnRight;
+    private MobileButton btnThrust;
+    private MobileButton btnFire;
+    private bool mobileFireReady = true;
+
     void Start()
     {
         // Finds the edges of the camera view
@@ -48,13 +55,44 @@ public class PlayerController : MonoBehaviour
         // Turns off safety after a set time
         Invoke("TurnOffInvincibility", invincibilityTime);
 
+        GameObject leftObj = GameObject.Find("Btn_Left");
+        if (leftObj != null) btnLeft = leftObj.GetComponent<MobileButton>();
+
+        GameObject rightObj = GameObject.Find("Btn_Right");
+        if (rightObj != null) btnRight = rightObj.GetComponent<MobileButton>();
+
+        GameObject thrustObj = GameObject.Find("Btn_Thrust");
+        if (thrustObj != null) btnThrust = thrustObj.GetComponent<MobileButton>();
+
+        GameObject fireObj = GameObject.Find("Btn_Fire");
+        if (fireObj != null) btnFire = fireObj.GetComponent<MobileButton>();
+
+        // Platform detection
+        // Find the container holding all the mobile buttons
+        GameObject mobileUI = GameObject.Find("MobileUI");
+        if (mobileUI != null)
+        {
+            // Check to see if game is running on PC
+            if (!Application.isMobilePlatform)
+            {
+                // Turn off mobile buttons
+                mobileUI.SetActive(false);
+            }
+        }
+
     }
 
     void Update()
     {
+        // HYBRID MOVEMENT (PC and MOBILE)
         // Checks if player is pressing movement keys
         float thrustInput = Input.GetAxis("Vertical");
         float turnInput = Input.GetAxis("Horizontal");
+
+        // Overrides PC input if a mobile UI button is currently being pressed
+        if (btnLeft != null && btnLeft.isPressed) turnInput = -1f;
+        if (btnRight != null && btnRight.isPressed) turnInput = 1f;
+        if (btnThrust != null && btnThrust.isPressed) thrustInput = 1f;
 
         // Turns the ship based on input
         transform.Rotate(Vector3.forward, -turnInput * rotationSpeed * Time.deltaTime);
@@ -85,10 +123,31 @@ public class PlayerController : MonoBehaviour
         // Keeps spaceship inside the screen
         WrapScreen();
 
-        // Checks for left-click to shoot
+        // HYBRID SHOOTING (PC and MOBILE)
+        // PC Click / Screen Tap 
         if (Input.GetMouseButtonDown(0)) 
         {
-            Shoot();
+            if (EventSystem.current != null && !EventSystem.current.IsPointerOverGameObject())
+            {
+                Shoot();
+            }
+        }
+
+        // Mobile Fire Button
+        if (btnFire != null && btnFire.isPressed)
+        {
+            if (mobileFireReady)
+            {
+                Shoot();
+                // Locks the laser until the thumb is lifted
+                mobileFireReady = false;
+            }
+        }
+        else
+        {
+            // Unlocks when the thumb leaves the screen 
+            mobileFireReady = true; 
+
         }
 
         // Checks for hyperspace buttons (Left Shift/Right Mouse Button)
