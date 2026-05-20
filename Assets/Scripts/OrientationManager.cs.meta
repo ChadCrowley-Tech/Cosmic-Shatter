@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: ff0b7da4c98676f468b30ef46dec902e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rotateMessagePanel: {fileID: 6922702130469157798, guid: 89ad5cb7157ca3f46a2036863a3d0767, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
