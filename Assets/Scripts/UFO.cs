@@ -6,6 +6,8 @@ public class UFO : MonoBehaviour
     public float speed = 3f;
     // Laser object for UFO
     public GameObject enemyLaserPrefab;
+    // Holds the explosion graphic
+    public GameObject explosionPrefab;
     // UFO fire rate
     public float fireRate = 2f; 
     // Amount of points user gains for destroying UFO 
@@ -60,6 +62,9 @@ public class UFO : MonoBehaviour
 
             // Adds points to the total score
             GameManager.Instance.AddScore(scoreValue);
+
+            // Spawns the explosion graphic 
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity); 
 
             // Play UFO explosion sound
             AudioManager.Instance.PlayUFOExplosion();

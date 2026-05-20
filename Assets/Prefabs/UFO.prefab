@@ -172,5 +172,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UFO
   speed: 3
   enemyLaserPrefab: {fileID: 4538180304603880247, guid: 016738e209c753b40961237e9c3fe678, type: 3}
+  explosionPrefab: {fileID: 6226527401717925423, guid: a80c9d10b0bf883459c8fa48f4672015, type: 3}
   fireRate: 2
   scoreValue: 200

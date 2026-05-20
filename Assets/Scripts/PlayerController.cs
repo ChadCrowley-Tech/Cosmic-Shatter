@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private MobileButton btnThrust;
     private MobileButton btnFire;
     private bool mobileFireReady = true;
+    private bool isMobileHardware;
 
     void Start()
     {
@@ -54,6 +55,9 @@ public class PlayerController : MonoBehaviour
         
         // Turns off safety after a set time
         Invoke("TurnOffInvincibility", invincibilityTime);
+
+        // Hardware check
+        isMobileHardware = Application.isMobilePlatform || SystemInfo.deviceType == DeviceType.Handheld;
 
         GameObject leftObj = GameObject.Find("Btn_Left");
         if (leftObj != null) btnLeft = leftObj.GetComponent<MobileButton>();
@@ -125,7 +129,7 @@ public class PlayerController : MonoBehaviour
 
         // HYBRID SHOOTING (PC and MOBILE)
         // PC Click / Screen Tap 
-        if (Input.GetMouseButtonDown(0)) 
+        if (!isMobileHardware && Input.GetMouseButtonDown(0)) 
         {
             if (EventSystem.current != null && !EventSystem.current.IsPointerOverGameObject())
             {
@@ -151,7 +155,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Checks for hyperspace buttons (Left Shift/Right Mouse Button)
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.LeftShift) || (!isMobileHardware && Input.GetMouseButtonDown(1)))
         {
             Hyperspace();
         }

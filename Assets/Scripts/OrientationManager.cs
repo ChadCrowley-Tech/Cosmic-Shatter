@@ -6,7 +6,9 @@ public class OrientationManager : MonoBehaviour
     
     void Update()
     {
-        if (Application.isMobilePlatform)
+        bool isMobile = Application.isMobilePlatform || SystemInfo.deviceType == DeviceType.Handheld;
+
+        if (isMobile)
         { 
             if(Screen.height > Screen.width)
             {
