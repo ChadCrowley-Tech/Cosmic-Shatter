@@ -2,7 +2,7 @@
 
 **Cosmic Shatter** is a fully playable, cross-platform arcade shooter developed in Unity (C#). Originally designed as a desktop experience, the application has been engineered to seamlessly support mobile web browsers with dynamic touch controls and responsive UI scaling. 
 
-🎮 **[Play the Game Live Here!](https://chadcrowley.tech.github.io/Cosmic-Shatter/)**
+🎮 **[Play the Game Live Here!](https://chadcrowley-tech.github.io/Cosmic-Shatter/)**
 
 ## 🛠️ Technical Highlights
 This project demonstrates a complete software development lifecycle, from writing core game logic to managing cross-platform web deployment. Key technical achievements include:
