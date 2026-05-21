@@ -1529,7 +1529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0b7da4c98676f468b30ef46dec902e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrientationManager
-  rotateMessagePanel: {fileID: 6922702130469157798, guid: 89ad5cb7157ca3f46a2036863a3d0767, type: 3}
+  rotateMessagePanel: {fileID: 1617164184}
 --- !u!1 &1087282053
 GameObject:
   m_ObjectHideFlags: 0
@@ -2756,6 +2756,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596947604}
   m_CullTransparentMesh: 1
+--- !u!1 &1617164184 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6922702130469157798, guid: 89ad5cb7157ca3f46a2036863a3d0767, type: 3}
+  m_PrefabInstance: {fileID: 3413965633265820973}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1617164185 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8466787505680620528, guid: 89ad5cb7157ca3f46a2036863a3d0767, type: 3}

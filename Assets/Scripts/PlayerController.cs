@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private MobileButton btnLeft;
     private MobileButton btnRight;
     private MobileButton btnThrust;
+    private MobileButton btnThrustAlt;
     private MobileButton btnFire;
     private bool mobileFireReady = true;
     private bool isMobileHardware;
@@ -68,6 +69,9 @@ public class PlayerController : MonoBehaviour
         GameObject thrustObj = GameObject.Find("Btn_Thrust");
         if (thrustObj != null) btnThrust = thrustObj.GetComponent<MobileButton>();
 
+        GameObject thrustAltObj = GameObject.Find("Btn_Thrust_Alt");
+        if (thrustAltObj != null) btnThrustAlt = thrustAltObj.GetComponent<MobileButton>();
+
         GameObject fireObj = GameObject.Find("Btn_Fire");
         if (fireObj != null) btnFire = fireObj.GetComponent<MobileButton>();
 
@@ -96,7 +100,7 @@ public class PlayerController : MonoBehaviour
         // Overrides PC input if a mobile UI button is currently being pressed
         if (btnLeft != null && btnLeft.isPressed) turnInput = -1f;
         if (btnRight != null && btnRight.isPressed) turnInput = 1f;
-        if (btnThrust != null && btnThrust.isPressed) thrustInput = 1f;
+        if (btnThrust != null && btnThrust.isPressed || btnThrustAlt != null && btnThrustAlt.isPressed) thrustInput = 1f;
 
         // Turns the ship based on input
         transform.Rotate(Vector3.forward, -turnInput * rotationSpeed * Time.deltaTime);

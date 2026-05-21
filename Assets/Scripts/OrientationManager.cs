@@ -6,18 +6,9 @@ public class OrientationManager : MonoBehaviour
     
     void Update()
     {
-        bool isMobile = Application.isMobilePlatform || SystemInfo.deviceType == DeviceType.Handheld;
-
-        if (isMobile)
-        { 
-            if(Screen.height > Screen.width)
-            {
-                rotateMessagePanel.SetActive(true);
-            }
-            else
-            {
-                rotateMessagePanel.SetActive(false);
-            }
+        if(Screen.height > Screen.width)
+        {
+            rotateMessagePanel.SetActive(true);
         }
         else
         {
