@@ -4,6 +4,16 @@
 
 🎮 **[Play the Game Live Here!](https://chadcrowley-tech.github.io/Cosmic-Shatter/)**
 
+## 🛡️ Security Architecture
+
+Unlike standard game projects, Cosmic Shatter was engineered with fundamental cybersecurity principles in mind, focusing on local data integrity and memory protection:
+
+* **In-Memory Obfuscation:** Implements a custom SecureInt.cs wrapper that generates a cryptographically secure, randomized key at runtime. This defends the active score and variables from being manipulated by local memory scanners (e.g., Cheat Engine).
+
+* **AES-256 Local Encryption:** The SecureSaveSystem.cs engine utilizes AES-256 symmetric encryption to lock the local secure_leaderboard.dat file, preventing casual manipulation of high-score data.
+
+* **Architecture Note:** As a purely client-side application without a remote authoritative server, symmetric decryption keys are inherently embedded within the compiled binary. This architecture deliberately mitigates casual file tampering while acknowledging the standard vulnerability of offline DRM to active decompilation.
+
 ## 🛠️ Technical Highlights
 This project demonstrates a complete software development lifecycle, from writing core game logic to managing cross-platform web deployment. Key technical achievements include:
 
