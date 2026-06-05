@@ -12,8 +12,8 @@ public static class SecureSaveSystem
 
     // AES Encryption Keys, compiled into the code
     // Key must be 32 bytes (256-bit), and IV must be 16 bytes (128-bit)
-    private static readonly byte[] key = Encoding.UTF8.GetBytes("CyberSecResumeProjectAsteroids!!"); 
-    private static readonly byte[] iv = Encoding.UTF8.GetBytes("InitVector123456"); 
+    private static readonly byte[] key = Encoding.UTF8.GetBytes("CosmicShatterLocalSaveDataKey!!!"); 
+    private static readonly byte[] iv = Encoding.UTF8.GetBytes("CosmicShatterIV!"); 
 
     public static void SaveLeaderboard(LeaderboardData data)
     {
